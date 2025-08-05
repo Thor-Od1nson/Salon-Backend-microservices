@@ -1,0 +1,13 @@
+package com.vishal.saloon_service.client;
+
+import com.vishal.saloon_service.payload.dto.UserDto;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(name = "api-gateway", path = "/api/v1/user")
+public interface UserServiceClient {
+
+    @GetMapping("/email")
+    UserDto findUserByEmail(@RequestParam("email") String email);
+}
