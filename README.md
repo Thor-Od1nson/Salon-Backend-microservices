@@ -23,3 +23,24 @@ service segregation, role-based access, and real-time availability tracking.
 * Integrated a secure payment service for post-appointment transactions, ensuring reliable and traceable payment processing.
 * Built a review system allowing users to rate services post-appointment, increasing customer engagement and feedback visibility.
 * Designed a role-based access system for users and salon owners, supporting secure operations and proper data segregation.
+
+### Architecture
+
+Clients (Web + Mobile)
+       ↓
+[ API Gateway ]  ← Spring Cloud Gateway + JWT Authentication + Rate Limiting
+       ↓
+[Eureka Server]  ← Service Discovery
+
+       ┌──────────────────────┬──────────────────────┬──────────────────────┐
+       │                      │                      │                      │
+   User Service         Salon Service         Category Service      Service Offering Service
+       │                      │                      │                      │
+       └──────────────┬───────┴──────────────┬───────┴──────────────┬───────┘
+                      │                      │                      │
+                  Booking Service  ────►  Payment Service
+                      │
+                  Review Service (can be added later)
+
+          ↓ (Async Events)
+     [ RabbitMQ / Kafka ]   ← For Saga, Notifications, Loyalty etc.
