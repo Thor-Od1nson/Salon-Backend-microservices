@@ -1,0 +1,5 @@
+com\vishal\review_service\model\Review.class
+com\vishal\review_service\repository\ReviewRepository.class
+com\vishal\review_service\controller\ReviewController.class
+com\vishal\review_service\ReviewServiceApplication.class
+com\vishal\review_service\service\ReviewService.class
